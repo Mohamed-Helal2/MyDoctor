@@ -16,7 +16,13 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text("zezgaif",style: TextStyle(color: Colors.blue,fontSize: 50),)],
+        children: [
+          Text(
+            "zezgaif",
+            style: TextStyle(color: Colors.blue, fontSize: 50),
+          ),
+          Text('Test 2222222222')
+        ],
       )),
     );
   }
