@@ -21,6 +21,10 @@ class MyApp extends StatelessWidget {
             Icons.stacked_bar_chart,
             size: 45,
             color: Colors.blue,
+          ),
+          Text(
+            "Sid",
+            style: TextStyle(fontSize: 70, color: Colors.black),
           )
         ],
       )),
