@@ -16,7 +16,13 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text("zezgaif",style: TextStyle(color: Colors.blue,fontSize: 50),)],
+        children: [
+          Icon(
+            Icons.stacked_bar_chart,
+            size: 45,
+            color: Colors.blue,
+          )
+        ],
       )),
     );
   }
