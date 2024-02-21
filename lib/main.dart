@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
             "zezgaif",
             style: TextStyle(color: Colors.blue, fontSize: 50),
           ),
-          Text('Test 2222222222')
+          Text('Test 2222222222'),
+          Icon(Icons.abc)
         ],
       )),
     );
