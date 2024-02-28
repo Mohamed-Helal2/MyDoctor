@@ -4,5 +4,11 @@ import 'package:mydoctor/core/routing/app_router.dart';
 import 'doc_app.dart';
 
 void main() {
-  runApp(DocApp(appRouter: AppRouter(),));
-} 
+  runApp(
+    DocApp(
+      appRouter: AppRouter(),
+    ),
+  );
+}
+
+
