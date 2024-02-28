@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mydoctor/core/helper/spacing.dart';
 import 'package:mydoctor/core/theming/styling.dart';
+import 'package:mydoctor/features/login/data/model/login_request_body.dart';
+import 'package:mydoctor/features/login/logic/cubit/login_cubit.dart';
 import 'package:mydoctor/features/login/ui/widget/already_have_account.dart';
+import 'package:mydoctor/features/login/ui/widget/login_bloc_listner.dart';
 import 'package:mydoctor/features/login/ui/widget/terms_and_condition_text.dart';
 
 import '../../../core/widget/app_text_button.dart';
-import '../../../core/widget/app_text_form_field.dart';
+import 'widget/email_and_password.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final FormKey = GlobalKey<FormState>();
-  bool isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,55 +32,51 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyles.Fons14GreyRegular.copyWith(height: 1.5),
                 ),
                 verticalSpace(36),
-                Form(
-                  key: FormKey,
-                  child: Column(
-                    children: [
-                      const AppTextFormField(
-                        hintText: 'Email',
-                      ),
-                      verticalSpace(18),
-                      AppTextFormField(
-                          hintText: 'Password',
-                          isobscureText: isObscure,
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isObscure = !isObscure;
-                                });
-                              },
-                              icon: Icon(
-                                isObscure == false
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                size: 32,
-                              ))),
-                      verticalSpace(24),
-                      Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: Text(
-                          'Forgot Password',
-                          style: TextStyles.font_13_blurreglar,
-                        ),
-                      ),
-                      verticalSpace(40),
-                      AppTextButton(
-                        onPressed: () {},
-                        text: 'Login',
-                        textstyle: TextStyles.font_16_whitemedium,
-                      ),
-                      verticalSpace(16),
-                      const TermsAndConditionText(),
-                      verticalSpace(50),
-                      const AlreadyHaveAccount()
-                    ],
+                const EmailAndPassword(),
+                verticalSpace(24),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: Text(
+                    'Forgot Password',
+                    style: TextStyles.font_13_blurreglar,
                   ),
-                )
+                ),
+                verticalSpace(40),
+                AppTextButton(
+                  onPressed: () {
+                    // print(
+                    //     '___________________________________${context.read<LoginCubit>().emailcontroller.text}');
+                    // print(
+                    //     '___________________________________${context.read<LoginCubit>().passwordcontroller.text}');
+                    // context.read<LoginCubit>().Logiin(LoginrequestBody(
+                    //     email: context.read<LoginCubit>().emailcontroller.text,
+                    //     password: context
+                    //         .read<LoginCubit>()
+                    //         .passwordcontroller
+                    //         .text));
+                    ValidateThenLogin(context);
+                  },
+                  text: 'Login',
+                  textstyle: TextStyles.font_16_whitemedium,
+                ),
+                verticalSpace(20),
+                const TermsAndConditionText(),
+                verticalSpace(19),
+                const AlreadyHaveAccount(),
+                const LoginBlocListner()
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void ValidateThenLogin(BuildContext context) {
+    if (context.read<LoginCubit>().FormKey.currentState!.validate()) {
+      context.read<LoginCubit>().Logiin(LoginrequestBody(
+          email: context.read<LoginCubit>().emailcontroller.text,
+          password: context.read<LoginCubit>().passwordcontroller.text));
+    }
   }
 }

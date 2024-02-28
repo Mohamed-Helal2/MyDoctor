@@ -72,4 +72,9 @@ class TextStyles {
       fontWeight: FontWightHelper.semibold,
       fontSize: 15.sp,
       color: ColorsManager.mainBlue);
+
+        static TextStyle Fons15greynormal = TextStyle(
+      fontWeight: FontWightHelper.Light,
+      fontSize: 13.sp,
+      color: const Color.fromARGB(255, 91, 90, 90));
 }
